@@ -5,11 +5,13 @@
 **A comprehensive Android health and fitness app built with Jetpack Compose, featuring AI-powered analysis, food scanning, habit tracking, and comprehensive health metrics.**
 
 [![Download on Google Play](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.kreggscode.bmi)
+[![Website](https://img.shields.io/badge/Website-Landing_Page-blue?style=for-the-badge)](https://kreggscode.github.io/BMI-Pro/)
 [![License](https://img.shields.io/badge/License-Educational-9cf?style=for-the-badge)](https://github.com/kreggscode/BMI-Pro)
 [![Kotlin](https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
 [![Jetpack Compose](https://img.shields.io/badge/Compose-4285F4?style=for-the-badge&logo=jetpack-compose&logoColor=white)](https://developer.android.com/jetpack/compose)
 
 ### 📱 [Download from Google Play Store](https://play.google.com/store/apps/details?id=com.kreggscode.bmi)
+### 🌐 [Visit Website](https://kreggscode.github.io/BMI-Pro/) - [Privacy Policy](https://kreggscode.github.io/BMI-Pro/privacy_policy.html) - [Terms](https://kreggscode.github.io/BMI-Pro/terms_and_conditions.html)
 
 </div>
 
@@ -189,8 +191,9 @@ git clone https://github.com/kreggscode/BMI-Pro.git
 
 ## 📄 Documentation
 
-- 📄 [Privacy Policy](privacy_policy.html)
-- 📋 [Terms and Conditions](terms_and_conditions.html)
+- 🌐 [Landing Page / Website](https://kreggscode.github.io/BMI-Pro/)
+- 📄 [Privacy Policy](https://kreggscode.github.io/BMI-Pro/privacy_policy.html)
+- 📋 [Terms and Conditions](https://kreggscode.github.io/BMI-Pro/terms_and_conditions.html)
 
 ---
 
