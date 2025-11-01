@@ -1,5 +1,7 @@
 package com.kreggscode.bmi.ui.screens
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
@@ -198,9 +200,7 @@ fun SettingsScreen(onToggleTheme: () -> Unit, isDarkTheme: Boolean) {
                 colors = listOf(AccentYellow, AccentOrange),
                 onClick = {
                     // Open Play Store rating
-                    val intent = android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
-                        data = android.net.Uri.parse("https://play.google.com/store/apps/details?id=com.kreggscode.bmi")
-                    }
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.kreggscode.bmi"))
                     context.startActivity(intent)
                 }
             )
@@ -213,15 +213,14 @@ fun SettingsScreen(onToggleTheme: () -> Unit, isDarkTheme: Boolean) {
                 subtitle = "Tell your friends about BMI Pro",
                 colors = listOf(AccentBlue, AccentTeal),
                 onClick = {
-                    val sendIntent = android.content.Intent().apply {
-                        action = android.content.Intent.ACTION_SEND
+                    val sendIntent = Intent(Intent.ACTION_SEND).apply {
                         putExtra(
-                            android.content.Intent.EXTRA_TEXT,
+                            Intent.EXTRA_TEXT,
                             "Check out BMI Pro - Your Complete Health Companion!\n\nhttps://play.google.com/store/apps/details?id=com.kreggscode.bmi"
                         )
                         type = "text/plain"
                     }
-                    val shareIntent = android.content.Intent.createChooser(sendIntent, null)
+                    val shareIntent = Intent.createChooser(sendIntent, null)
                     context.startActivity(shareIntent)
                 }
             )
@@ -234,9 +233,7 @@ fun SettingsScreen(onToggleTheme: () -> Unit, isDarkTheme: Boolean) {
                 subtitle = "Try my other apps",
                 colors = listOf(AccentPurple, AccentPink),
                 onClick = {
-                    val intent = android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
-                        data = android.net.Uri.parse("https://play.google.com/store/apps/developer?id=Kregg")
-                    }
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Kregg"))
                     context.startActivity(intent)
                 }
             )
@@ -249,9 +246,7 @@ fun SettingsScreen(onToggleTheme: () -> Unit, isDarkTheme: Boolean) {
                 subtitle = "Purchase premium apps",
                 colors = listOf(AccentGreen, AccentTeal),
                 onClick = {
-                    val intent = android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
-                        data = android.net.Uri.parse("https://play.google.com/store/apps/details?id=com.kreggscode.bmicalculator")
-                    }
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.kreggscode.bmicalculator"))
                     context.startActivity(intent)
                 }
             )
