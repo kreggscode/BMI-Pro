@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BMI Pro</string>
+    <string name="home">Home</string>
+    <string name="calculator">Calculator</string>
+    <string name="tracker">Tracker</string>
+    <string name="scanner">Scanner</string>
+    <string name="diet">Diet Plans</string>
+    <string name="calories">Calories</string>
+    <string name="chat">AI Chat</string>
+</resources>
+

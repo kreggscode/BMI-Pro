@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Production: Only allow HTTPS -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+    
+    <!-- Allow HTTPS for Pollinations AI API -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">text.pollinations.ai</domain>
+        <domain includeSubdomains="true">image.pollinations.ai</domain>
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+</network-security-config>
+

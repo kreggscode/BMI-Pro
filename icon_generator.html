@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Icon Generator - 512x512</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        #iconCanvas {
+            border: 4px solid white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            background: white;
+        }
+        
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        #downloadBtn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        #downloadBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        #regenerateBtn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        #regenerateBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .info {
+            margin-top: 20px;
+            color: white;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 BMI Icon Generator</h1>
+    <canvas id="iconCanvas" width="512" height="512"></canvas>
+    
+    <div class="controls">
+        <button id="regenerateBtn">🔄 Regenerate</button>
+        <button id="downloadBtn">⬇️ Download Icon</button>
+    </div>
+    
+    <div class="info">
+        <p>512x512 PNG • Perfect for Android App Icons</p>
+        <p>Click "Regenerate" for different gradient variations</p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('iconCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Gradient color schemes
+        const gradients = [
+            ['#667eea', '#764ba2', '#f093fb'], // Purple to Pink
+            ['#4facfe', '#00f2fe', '#43e97b'], // Blue to Cyan to Green
+            ['#fa709a', '#fee140', '#30cfd0'], // Pink to Yellow to Cyan
+            ['#a8edea', '#fed6e3', '#fbc2eb'], // Soft Pastels
+            ['#ff9a9e', '#fecfef', '#fbc2eb'], // Pink Gradient
+            ['#667eea', '#764ba2', '#f093fb'], // Default Purple
+        ];
+        
+        let currentGradientIndex = 0;
+        
+        function drawIcon() {
+            // Clear canvas
+            ctx.clearRect(0, 0, 512, 512);
+            
+            // Get current gradient colors
+            const colors = gradients[currentGradientIndex];
+            
+            // Create radial gradient background
+            const gradient = ctx.createRadialGradient(256, 256, 0, 256, 256, 400);
+            gradient.addColorStop(0, colors[0]);
+            gradient.addColorStop(0.5, colors[1]);
+            gradient.addColorStop(1, colors[2]);
+            
+            // Draw rounded rectangle background
+            ctx.fillStyle = gradient;
+            roundRect(ctx, 0, 0, 512, 512, 100);
+            ctx.fill();
+            
+            // Add subtle pattern overlay
+            ctx.globalAlpha = 0.1;
+            for (let i = 0; i < 512; i += 40) {
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(256, 256, i, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            ctx.globalAlpha = 1.0;
+            
+            // Draw "BMI" text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 180px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // Add text shadow for depth
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+            ctx.shadowBlur = 20;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 10;
+            
+            // Draw main text
+            ctx.fillText('BMI', 256, 256);
+            
+            // Reset shadow
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            
+            // Add decorative elements - heart icon above
+            ctx.save();
+            ctx.translate(256, 120);
+            ctx.scale(1.5, 1.5);
+            drawHeart(ctx, 0, 0, 30);
+            ctx.restore();
+            
+            // Add decorative elements - pulse line below
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.lineWidth = 4;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.beginPath();
+            ctx.moveTo(100, 400);
+            ctx.lineTo(150, 400);
+            ctx.lineTo(180, 370);
+            ctx.lineTo(210, 430);
+            ctx.lineTo(240, 400);
+            ctx.lineTo(272, 400);
+            ctx.lineTo(302, 370);
+            ctx.lineTo(332, 430);
+            ctx.lineTo(362, 400);
+            ctx.lineTo(412, 400);
+            ctx.stroke();
+        }
+        
+        function drawHeart(ctx, x, y, size) {
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.beginPath();
+            ctx.moveTo(x, y + size / 4);
+            ctx.quadraticCurveTo(x, y, x + size / 4, y);
+            ctx.quadraticCurveTo(x + size / 2, y, x + size / 2, y + size / 4);
+            ctx.quadraticCurveTo(x + size / 2, y, x + size * 3 / 4, y);
+            ctx.quadraticCurveTo(x + size, y, x + size, y + size / 4);
+            ctx.quadraticCurveTo(x + size, y + size / 2, x + size * 3 / 4, y + size * 3 / 4);
+            ctx.lineTo(x + size / 2, y + size);
+            ctx.lineTo(x + size / 4, y + size * 3 / 4);
+            ctx.quadraticCurveTo(x, y + size / 2, x, y + size / 4);
+            ctx.fill();
+        }
+        
+        function roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+        
+        function downloadIcon() {
+            const link = document.createElement('a');
+            link.download = 'bmi_icon_512x512.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        function regenerateIcon() {
+            currentGradientIndex = (currentGradientIndex + 1) % gradients.length;
+            drawIcon();
+        }
+        
+        // Event listeners
+        document.getElementById('downloadBtn').addEventListener('click', downloadIcon);
+        document.getElementById('regenerateBtn').addEventListener('click', regenerateIcon);
+        
+        // Initial draw
+        drawIcon();
+    </script>
+</body>
+</html>
+
