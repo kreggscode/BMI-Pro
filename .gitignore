@@ -107,3 +107,4 @@ pollination ai.md
 # Documentation files (keep only README.md)
 *.md
 !README.md
+!GOOGLE_PLAY_STORE_LISTING.md
