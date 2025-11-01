@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BMI Pro - Your Complete Health Companion. AI-powered health tracking, food scanning, and comprehensive wellness tools.">
+    <title>BMI Pro - Your Complete Health Companion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 2px, transparent 2px);
+            background-size: 50px 50px;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            max-width: 900px;
+        }
+        
+        .app-icon {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        h1 {
+            font-size: 4em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            padding: 18px 40px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-5px);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 40px;
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 60px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f093fb15 0%, #f5576c15 100%);
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        .feature-card p {
+            color: #666;
+            font-size: 1em;
+        }
+        
+        /* Tech Stack Section */
+        .tech-stack {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .tech-item {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .tech-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        /* Download Section */
+        .download {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: white;
+        }
+        
+        .download h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .download p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 40px 40px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #667eea;
+        }
+        
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .social-icon {
+            font-size: 2em;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            color: #667eea;
+            transform: scale(1.2);
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="app-icon">🏥</div>
+            <h1>BMI Pro</h1>
+            <p class="subtitle">Your Complete Health Companion</p>
+            <p style="font-size: 1.2em; margin-bottom: 30px;">AI-Powered Health Tracking • Food Scanning • Comprehensive Wellness Tools</p>
+            
+            <div class="cta-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.kreggscode.bmi" class="btn btn-primary" target="_blank">
+                    <span>📱</span>
+                    Download on Google Play
+                </a>
+                <a href="https://github.com/kreggscode/BMI-Pro" class="btn btn-secondary" target="_blank">
+                    <span>⭐</span>
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">✨ Key Features</h2>
+            <p class="section-subtitle">Everything you need for a healthier lifestyle in one app</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧮</div>
+                    <h3>BMI Calculator</h3>
+                    <p>Calculate and track your BMI with AI-powered insights and personalized recommendations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Health Assistant</h3>
+                    <p>Chat with your personal AI health expert for instant advice, nutrition tips, and wellness guidance.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📸</div>
+                    <h3>Smart Food Scanner</h3>
+                    <p>Scan any food item with your camera for instant nutritional analysis and calorie counting.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3>Calorie Tracker</h3>
+                    <p>Log meals, track macros, and monitor your daily caloric intake with beautiful visual charts.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💧</div>
+                    <h3>Water Tracker</h3>
+                    <p>Stay hydrated by tracking your daily water intake with personalized reminders.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">😴</div>
+                    <h3>Sleep Tracker</h3>
+                    <p>Monitor your sleep patterns and quality to improve your overall wellness.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Habits Tracker</h3>
+                    <p>Build healthy routines with habit tracking and streak monitoring.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Todo List</h3>
+                    <p>Manage your health-related tasks and stay organized with smart todo lists.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🍎</div>
+                    <h3>Diet Plans</h3>
+                    <p>Get AI-generated personalized meal plans tailored to your health goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title">🛠️ Built With</h2>
+            <p class="section-subtitle">Modern Android technologies for the best user experience</p>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">📱</div>
+                    <h3>Kotlin</h3>
+                    <p>Modern Android language</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">🎨</div>
+                    <h3>Jetpack Compose</h3>
+                    <p>Modern UI framework</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">🗄️</div>
+                    <h3>Room Database</h3>
+                    <p>Local data storage</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">🌐</div>
+                    <h3>Retrofit</h3>
+                    <p>API networking</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">🤖</div>
+                    <h3>AI Integration</h3>
+                    <p>Pollinations AI</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">📷</div>
+                    <h3>CameraX</h3>
+                    <p>Food scanning</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download">
+        <h2>Ready to Start Your Health Journey?</h2>
+        <p>Download BMI Pro today and take control of your wellness</p>
+        <div class="cta-buttons" style="justify-content: center;">
+            <a href="https://play.google.com/store/apps/details?id=com.kreggscode.bmi" class="btn btn-primary" target="_blank">
+                <span>🚀</span>
+                Get It Now - FREE
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="privacy_policy.html">Privacy Policy</a>
+                <a href="terms_and_conditions.html">Terms & Conditions</a>
+                <a href="https://github.com/kreggscode/BMI-Pro" target="_blank">GitHub</a>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="font-size: 1.3em; margin-bottom: 15px;">Contact</h3>
+                <p style="font-size: 1.1em;">
+                    <a href="mailto:kreg9da@gmail.com" style="color: white; text-decoration: none;">kreg9da@gmail.com</a>
+                </p>
+                <p style="margin-top: 10px; opacity: 0.8;">Developer: Kregg</p>
+            </div>
+            
+            <div style="margin-top: 40px;">
+                <h3 style="font-size: 1.3em; margin-bottom: 20px;">More Apps</h3>
+                <div class="cta-buttons" style="justify-content: center;">
+                    <a href="https://play.google.com/store/apps/developer?id=Kregg" class="btn btn-secondary" target="_blank">
+                        View All Apps
+                    </a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 BMI Pro. All rights reserved.</p>
+                <p style="margin-top: 10px;">Made with ❤️ using Kotlin, Jetpack Compose, and Pollinations AI</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
