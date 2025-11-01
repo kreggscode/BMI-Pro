@@ -86,12 +86,19 @@ Take control of your health today. Download BMI Pro—your complete health compa
 ## 🔐 Data Safety Information
 
 ### Does your app collect or share any of the required user data types?
-**NO**
+**NO** ✅
 
 ### Data Collection
-**No data collected**
+**No data collected by BMI Pro**
 
 BMI Pro does NOT collect any user data. All information is stored locally on your device only.
+
+**Important:** Your app uses Pollinations AI for processing user queries and images. According to Google Play policies, you must answer "YES" to data collection questions if your app sends data to third-party services, even if you don't store it yourself.
+
+### Google Play Data Safety Declaration
+**For "Does your app collect or share user data?" You MUST answer: YES**
+
+**Why:** Your app uses Pollinations AI which processes user queries and images.
 
 **What this means:**
 - ✅ No personal information collected
